@@ -68,6 +68,8 @@
                                 <BoxContainer Name="VoteContainer" Access="Public" Orientation="Vertical" SeparationOverride="4" />
                             </ScrollContainer>
                             
+                            <Control Name="DonationAnchor" Margin="0 0 0 10" />
+                            
                             <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="NovaLobbyButton" Text="Голосование" HorizontalExpand="True" />
                         </BoxContainer>
                     </PanelContainer>
