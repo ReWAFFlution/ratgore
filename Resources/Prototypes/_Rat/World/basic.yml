@@ -189,6 +189,10 @@
   chunkComponents:
   - type: DebrisFeaturePlacerController
     densityNoiseChannel: RatDensityMax
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.1, 0.2
+    noiseChannel: RatCarver
   - type: SimpleDebrisSelector
     debrisTable:
     - id: RatAsteroidRichLarge
