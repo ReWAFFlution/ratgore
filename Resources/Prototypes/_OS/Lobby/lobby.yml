@@ -96,4 +96,10 @@
   id: ImperiaLobbyScreen
   path: /Textures/_Rat/LobbyScreens/imperia.rsi
   name: Coat of Arms of the Empire
-  artist: Kraida
+  artist: Kraida (∩˃o˂∩)♡
+
+- type: animatedLobbyScreen
+  id: RatgoreLobbyScreen
+  path: /Textures/_Rat/LobbyScreens/ratgore.rsi
+  name: Coat of arms of Ratgore
+  artist: Kraida (∩˃o˂∩)♡
