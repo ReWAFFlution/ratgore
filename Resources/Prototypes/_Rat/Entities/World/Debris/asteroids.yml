@@ -77,7 +77,7 @@
       entries:
         FloorAsteroidSand:
           - id: WallRock
-            prob: 0.25
+            prob: 0.35
             orGroup: rock
           - id: WallRockCoal
             prob: 0.075
@@ -101,7 +101,7 @@
             prob: 0.05
             orGroup: rock
           - id: WallRockArtifactFragment
-            prob: 0.05
+            prob: 0.03
             orGroup: rock
           - id: WallRockPlasma
             prob: 0.03
@@ -287,8 +287,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatAsteroidRichLarge
@@ -298,8 +298,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatAsteroidPoorHuge
@@ -309,8 +309,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
 
 - type: entity
   id: RatAsteroidRichHuge
@@ -320,8 +320,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
 
 - type: entity
   id: RatIceAsteroidPoorLarge

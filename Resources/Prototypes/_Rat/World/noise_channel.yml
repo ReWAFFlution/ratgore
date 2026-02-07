@@ -4,11 +4,11 @@
   fractalLacunarityByPi: 0.666666666
   remapTo0Through1: true
   clippingRanges:
-    - 0.4, 0.6
+    - 0.3, 0.9
   clippedValue: 1.658 # magic number for chunk size.
   inputMultiplier: 6 # Makes density hopefully low noise in the local area while still being interesting at scale.
   outputMultiplier: 50.0 # We scale density up significantly for more human-friendly numbers.
-  minimum: 55.0
+  minimum: 88.0
 
 - type: noiseChannel
   id: RatDensityMin
@@ -20,7 +20,7 @@
   clippedValue: 2
   inputMultiplier: 6
   outputMultiplier: 50.0
-  minimum: 0.95
+  minimum: 0.97
 
 - type: noiseChannel
   id: RatCarver
