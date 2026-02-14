@@ -25,7 +25,7 @@
       entries:
         FloorAsteroidSand:
           - id: WallRock
-            prob: 0.60
+            prob: 0.70
             orGroup: rock
           - id: WallRockCoal
             prob: 0.05
@@ -331,8 +331,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatIceAsteroidRichLarge
@@ -342,8 +342,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatIceAsteroidPoorHuge
@@ -353,8 +353,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
 
 - type: entity
   id: RatIceAsteroidRichHuge
@@ -364,8 +364,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
 
 - type: entity
   id: RatBasaltAsteroidPoorLarge
@@ -375,8 +375,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatBasaltAsteroidRichLarge
@@ -386,8 +386,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 90
-      radius: 25
+      floorPlacements: 150
+      radius: 40
 
 - type: entity
   id: RatBasaltAsteroidPoorHuge
@@ -397,8 +397,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
 
 - type: entity
   id: RatBasaltAsteroidRichHuge
@@ -408,5 +408,5 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      floorPlacements: 200
-      radius: 50
+      floorPlacements: 300
+      radius: 70
