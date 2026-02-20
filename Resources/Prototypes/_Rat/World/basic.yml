@@ -1,4 +1,14 @@
 ﻿- type: spaceBiome
+  id: DefaultFallbackBiome
+  priority: 0
+  minX: -1
+  maxX: 1
+  minY: -1
+  maxY: 1
+  noiseRanges: {}
+  chunkComponents: []
+
+- type: spaceBiome
   id: RatGraveyardMin
   priority: 1000
   distanceRange: 2500, 6000
