@@ -299,7 +299,7 @@
     layers:
       - state: base-projectile
 
-#gistum
+#Resolute
 
 - type: entity
   id: Bullet90mmHE

@@ -126,7 +126,7 @@
 #NEW SHIPGUN AMMO
 
 #Projectiles
-#120mm Pithatis
+#120mm Anvil
 - type: factoryRecipe
   id: 120mmRegularFabrication
   name: Manufacture 120mm Shell
@@ -157,7 +157,7 @@
   outputs:
     Cartridge120mmFlak: 1
 
-#300mm Pithis #hahahaha piss-this
+#300mm Leviathan #hahahaha piss-this
 - type: factoryRecipe
   id: 300mmRegularFabrication
   name: Manufacture 300mm Shell

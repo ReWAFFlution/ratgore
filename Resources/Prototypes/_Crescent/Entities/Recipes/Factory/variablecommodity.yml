@@ -233,9 +233,9 @@
 
 
 
-#50mm Whistler Ammo
+#50mm Striker Ammo
 - type: factoryRecipe
-  id: FabricateMagazine50mmWhistlerRegular
+  id: FabricateMagazine50mmStrikerRegular
   name: fabricate 50mmm usm drum
   inputs:
     Steel: 15
@@ -244,7 +244,7 @@
     Magazine50mm: 1
 
 - type: factoryRecipe
-  id: FabricateMagazine50mmWhistlerGyrostable
+  id: FabricateMagazine50mmStrikerGyrostable
   name: fabricate 50mmm gyrostable drum
   inputs:
     Steel: 15
@@ -254,7 +254,7 @@
     Magazine50mmHE: 1
 
 - type: factoryRecipe
-  id: FabricateMagazine50mmWhistlerPlasma
+  id: FabricateMagazine50mmStrikerPlasma
   name: fabricate 50mmm plasma drum
   inputs:
     Steel: 15
@@ -272,7 +272,7 @@
   outputs:
     MagazineCorpus: 1
 
-#90mm Gistum Ammo
+#90mm Resolute Ammo
 - type: factoryRecipe
   id: FabricateMagazine90mmRegular
   name: fabricate 90mmm regular shell clip
@@ -281,7 +281,7 @@
     Uranium: 3
     Plasma: 3
   outputs:
-    MagazineGistum: 1
+    MagazineResolute: 1
 
 - type: factoryRecipe
   id: FabricateMagazine90mmGyrostable
@@ -291,7 +291,7 @@
     Uranium: 13
     Plasma: 3
   outputs:
-    MagazineGistumAP: 1
+    MagazineResoluteAP: 1
 
 - type: factoryRecipe
   id: FabricateMagazine90mmPlasma
@@ -301,4 +301,4 @@
     Uranium: 3
     Plasma: 13
   outputs:
-    MagazineGistumHE: 1
+    MagazineResoluteHE: 1

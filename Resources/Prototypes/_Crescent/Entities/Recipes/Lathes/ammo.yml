@@ -483,9 +483,9 @@
 
 
 
-#50mm Whistler Ammo
+#50mm Striker Ammo
 - type: latheRecipe
-  id: Whistler50mmRegularRecipe
+  id: Striker50mmRegularRecipe
   result: Magazine50mm
   completetime: 2
   materials:
@@ -493,7 +493,7 @@
     Plasma: 500
 
 - type: latheRecipe
-  id: Whistler50mmGyrostableRecipe
+  id: Striker50mmGyrostableRecipe
   result: Magazine50mmHE
   completetime: 2
   materials:
@@ -502,9 +502,8 @@
     Uranium: 1500
 
 - type: latheRecipe
-  id: Whistler50mmPlasmaRecipe
-  result: Magazine50mmPlasma
-  completetime: 2
+  id: Striker50mmPlasmaRecipe
+  result: Magazine50mmSAPHE  completetime: 2
   materials:
     Steel: 3000
     Plasma: 2500
@@ -518,10 +517,10 @@
     Steel: 5000
     Uranium: 500
 
-#90mm Gistum Ammo
+#90mm Resolute Ammo
 - type: latheRecipe
-  id: Gistum90mmRegularRecipe
-  result: MagazineGistum
+  id: Resolute90mmRegularRecipe
+  result: MagazineResolute
   completetime: 2
   materials:
     Steel: 4000
@@ -529,8 +528,8 @@
     Plasma: 500
 
 - type: latheRecipe
-  id: Gistum90mmGyrostableRecipe
-  result: MagazineGistumAP
+  id: Resolute90mmGyrostableRecipe
+  result: MagazineResoluteAP
   completetime: 2
   materials:
     Steel: 4000
@@ -538,17 +537,17 @@
     Plasma: 500
 
 - type: latheRecipe
-  id: Gistum90mmPlasmaRecipe
-  result: MagazineGistumHE
+  id: Resolute90mmPlasmaRecipe
+  result: MagazineResoluteHE
   completetime: 2
   materials:
     Steel: 4000
     Uranium: 500
     Plasma: 2500
 
-#120mm Pithatis Ammo
+#120mm Anvil Ammo
 - type: latheRecipe
-  id: Pithatis120mmRegularRecipe
+  id: Anvil120mmRegularRecipe
   result: Cartridge120mm
   completetime: 2
   materials:
@@ -557,7 +556,7 @@
     Plasma: 500
 
 - type: latheRecipe
-  id: Pithatis120mmGyrostableRecipe
+  id: Anvil120mmGyrostableRecipe
   result: Cartridge120mmFlux
   completetime: 2
   materials:
@@ -566,7 +565,7 @@
     Plasma: 500
 
 - type: latheRecipe
-  id: Pithatis120mmPlasmaRecipe
+  id: Anvil120mmPlasmaRecipe
   result: Cartridge120mmFlak
   completetime: 2
   materials:
@@ -574,9 +573,9 @@
     Uranium: 500
     Plasma: 1000
 
-#300mm Pithis Ammo #More like Piss-Is hehehehehehehehe i'm such a fucking chud dude
+#300mm Leviathan Ammo #More like Piss-Is hehehehehehehehe i'm such a fucking chud dude
 - type: latheRecipe
-  id: Pithis300mmRecipe
+  id: Leviathan300mmRecipe
   result: Cartridge300mm
   completetime: 2
   materials:

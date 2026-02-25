@@ -22365,8 +22365,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: Magazine50mmPlasma
-  entities:
+- proto: Magazine50mmSAPHE  entities:
   - uid: 1899
     components:
     - type: Transform

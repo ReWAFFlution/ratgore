@@ -65,7 +65,7 @@
 #   - type: StaticPrice
 #     price: 15
 
-#pithatis
+#Anvil
 
 - type: entity
   id: Cartridge120mm
@@ -79,7 +79,7 @@
     deleteOnSpawn: true
     proto: Bullet120mmBase
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     layers:
     - state: gyro
       map: ["enum.AmmoVisualLayers.Base"]
@@ -100,7 +100,7 @@
     deleteOnSpawn: true
     proto: Bullet120mmFlak
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     layers:
     - state: heat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -121,7 +121,7 @@
     deleteOnSpawn: true
     proto: Bullet120mmFlux
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     layers:
     - state: apds
       map: ["enum.AmmoVisualLayers.Base"]
@@ -165,7 +165,7 @@
     count: 4
     spread: 4
 
-#pithis
+#Leviathan
 
 - type: entity
   id: Cartridge300mm
@@ -182,7 +182,7 @@
     deleteOnSpawn: true
     proto: Bullet300mmBase
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Leviathan.rsi
     layers:
     - state: ap
       map: ["enum.AmmoVisualLayers.Base"]
@@ -205,7 +205,7 @@
     deleteOnSpawn: true
     proto: Bullet35mmBase
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
     layers:
     - state: ap
       map: ["enum.AmmoVisualLayers.Base"]
@@ -227,7 +227,7 @@
     deleteOnSpawn: true
     proto: Bullet20mmHE
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
     layers:
     - state: heat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -249,7 +249,7 @@
 #     deleteOnSpawn: true
 #     proto: Bullet35mmPlasma
 #   - type: Sprite
-#     sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+#     sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
 #     layers:
 #     - state: heat
 #       map: ["enum.AmmoVisualLayers.Base"]
@@ -258,7 +258,7 @@
 #   - type: StaticPrice
 #     price: 15
 
-# whistler
+# Striker
 
 - type: entity
   id: Cartridge50mm
@@ -273,7 +273,7 @@
     deleteOnSpawn: true
     proto: Bullet50mmBase
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
     layers:
     - state: apds
       map: ["enum.AmmoVisualLayers.Base"]
@@ -295,7 +295,7 @@
     deleteOnSpawn: true
     proto: Bullet50mmHE
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
     layers:
     - state: ap
       map: ["enum.AmmoVisualLayers.Base"]
@@ -317,7 +317,7 @@
     deleteOnSpawn: true
     proto: Bullet50mmSAPHE
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Striker.rsi
     layers:
     - state: heat
       map: ["enum.AmmoVisualLayers.Base"]
@@ -326,7 +326,7 @@
   - type: StaticPrice
     price: 15
 
-#gistum
+#Resolute
 
 - type: entity
   id: Cartridge90mm
@@ -341,7 +341,7 @@
     deleteOnSpawn: true
     proto: Bullet90mmBase
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     scale: 0.75, 0.75
     layers:
     - state: gyro
@@ -364,7 +364,7 @@
     deleteOnSpawn: true
     proto: Bullet90mmAP
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     scale: 0.75, 0.75
     layers:
     - state: apds
@@ -387,7 +387,7 @@
     deleteOnSpawn: true
     proto: Bullet90mmHE
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/pithatis.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Cartridge/Anvil.rsi
     scale: 0.75, 0.75
     layers:
     - state: heat

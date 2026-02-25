@@ -37,7 +37,7 @@
 - type: Tag
   id: Cartridge35mmHE
 
-#whistler tag
+#Striker tag
 
 - type: Tag
   id: Cartridge50mm
@@ -79,7 +79,7 @@
   id: Cartridge90mm
 
 - type: Tag
-  id: GistumClip
+  id: ResoluteClip
 
 #120mm
 

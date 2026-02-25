@@ -29,7 +29,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Striker.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -72,7 +72,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Striker.rsi
     layers:
     - state: base-plasma
       map: ["enum.GunVisualLayers.Base"]
@@ -86,7 +86,7 @@
   - type: Appearance
 
 
-#whistler
+#Striker
 
 - type: entity
   id: Magazine50mm
@@ -118,7 +118,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Striker.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -161,7 +161,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Striker.rsi
     layers:
     - state: base-gyrostable
       map: ["enum.GunVisualLayers.Base"]
@@ -175,8 +175,7 @@
   - type: Appearance
 
 - type: entity
-  id: Magazine50mmPlasma
-  name: 50mm SAPHE drum
+  id: Magazine50mmSAPHE  name: 50mm SAPHE drum
   description: A munitions drum designed for 50mm cannons. Contains Semi-Armor Piercing High Explosive projectiles. Effective against most targets.
   parent: BaseItem
   components:
@@ -204,7 +203,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/whistler.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Striker.rsi
     layers:
     - state: base-plasma
       map: ["enum.GunVisualLayers.Base"]
@@ -330,12 +329,12 @@
     tags:
       - CorpusBox
 
-#gistum
+#Resolute
 
 - type: entity
-  id: MagazineGistum
+  id: MagazineResolute
   name: 90mm APHE clip
-  description: Three 5 round clips bundled together for with the mighty Gistum autocannon. Contains Armor-Piercing High Explosive shells that are effective against most targets.
+  description: Three 5 round clips bundled together for with the mighty Resolute autocannon. Contains Armor-Piercing High Explosive shells that are effective against most targets.
   parent: BaseItem
   components:
   - type: MultiHandedItem
@@ -349,7 +348,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/gistum.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Resolute.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -363,12 +362,12 @@
   - type: Appearance
   - type: Tag
     tags:
-      - GistumClip
+      - ResoluteClip
 
 - type: entity
-  id: MagazineGistumAP
+  id: MagazineResoluteAP
   name: 90mm Armor Piercing clip
-  description: Three 5 round clips bundled together for with the mighty Gistum autocannon. Contains Armor-Piercing shells effective against heavily armored targets.
+  description: Three 5 round clips bundled together for with the mighty Resolute autocannon. Contains Armor-Piercing shells effective against heavily armored targets.
   parent: BaseItem
   components:
   - type: MultiHandedItem
@@ -382,7 +381,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/gistum.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Resolute.rsi
     layers:
     - state: base-gyrostable
       map: ["enum.GunVisualLayers.Base"]
@@ -396,12 +395,12 @@
   - type: Appearance
   - type: Tag
     tags:
-      - GistumClip
+      - ResoluteClip
 
 - type: entity
-  id: MagazineGistumHE
+  id: MagazineResoluteHE
   name: 90mm High Explosive clip
-  description: Three 5 round clips bundled together for with the mighty Gistum autocannon. Contains High Explosive shells most effective against light targets.
+  description: Three 5 round clips bundled together for with the mighty Resolute autocannon. Contains High Explosive shells most effective against light targets.
   parent: BaseItem
   components:
   - type: MultiHandedItem
@@ -415,7 +414,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/gistum.rsi
+    sprite: _Crescent/Objects/Turrets/Ammunition/Magazine/Resolute.rsi
     layers:
     - state: base-plasma
       map: ["enum.GunVisualLayers.Base"]
@@ -429,4 +428,4 @@
   - type: Appearance
   - type: Tag
     tags:
-      - GistumClip
+      - ResoluteClip

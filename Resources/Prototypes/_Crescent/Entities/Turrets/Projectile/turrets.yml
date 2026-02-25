@@ -201,7 +201,7 @@
   id: WeaponTurretMediumMachinegun
   suffix: Machinegun, Small Ballistics
   name: 35mm 'Scout' Autocannon
-  description: Based on the 50mm 'Whistler' scaled down to be used with small hardpoints. It's fire rate is limited due to recoil and heating. It's magazines are quite compact but need to be reloaded more often.
+  description: Based on the 50mm 'Striker' scaled down to be used with small hardpoints. It's fire rate is limited due to recoil and heating. It's magazines are quite compact but need to be reloaded more often.
   components:
     - type: Sprite
       sprite: _Crescent/Objects/Turrets/Projectile/machinegun.rsi
@@ -267,7 +267,7 @@
   id: WeaponTurretMediumMachinegunNCWL
   suffix: Machinegun, Small Ballistics
   name: Homeguard 35mm 'Talon' Autocannon
-  description: Based on the 50mm 'Whistler' scaled down to be used with small hardpoints. It's fire rate is limited due to recoil and heating. It's magazines are quite compact but need to be reloaded more often. Upgraded in standard NCWL fashion with better accuracy and durability.
+  description: Based on the 50mm 'Striker' scaled down to be used with small hardpoints. It's fire rate is limited due to recoil and heating. It's magazines are quite compact but need to be reloaded more often. Upgraded in standard NCWL fashion with better accuracy and durability.
   components:
     - type: Sprite
       sprite: _Crescent/Objects/Turrets/Projectile/machinegun.rsi
@@ -571,13 +571,13 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazineGistum
+          startingItem: MagazineResolute
           insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
           priority: 2
           whitelist:
             tags:
-              - GistumClip
+              - ResoluteClip
         gun_chamber:
           name: Chamber
           startingItem: Cartridge90mm
