@@ -175,7 +175,8 @@
   - type: Appearance
 
 - type: entity
-  id: Magazine50mmSAPHE  name: 50mm SAPHE drum
+  id: Magazine50mmSAPHE
+  name: 50mm SAPHE drum
   description: A munitions drum designed for 50mm cannons. Contains Semi-Armor Piercing High Explosive projectiles. Effective against most targets.
   parent: BaseItem
   components:
