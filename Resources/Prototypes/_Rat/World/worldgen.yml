@@ -1,7 +1,6 @@
 ﻿- type: worldgenConfig
   id: RatWorld
   components:
-  - type: WorldController
   - type: BiomeSelection
     biomes:
     - RatCraster
