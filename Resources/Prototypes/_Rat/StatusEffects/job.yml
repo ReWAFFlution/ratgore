@@ -2,12 +2,12 @@
   parent: JobIcon
   id: JobIconImperialRegent
   icon:
-    sprite: /Textures/_Crescent/Interface/Misc/job_icons.rsi
-    state: Governor
+    sprite: /Textures/_Rat/Interface/Misc/job_icons.rsi
+    state: Regent
 
 - type: jobIcon
   parent: JobIcon
   id: JobIconImperialPretorian
   icon:
-    sprite: /Textures/_Crescent/Interface/Misc/job_icons.rsi
-    state: Knight
+    sprite: /Textures/_Rat/Interface/Misc/job_icons.rsi
+    state: Pretorian
