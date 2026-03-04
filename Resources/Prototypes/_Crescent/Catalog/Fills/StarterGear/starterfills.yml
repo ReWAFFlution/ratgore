@@ -414,6 +414,7 @@
        - id: KaiserAutoinjector
        - id: MechaniteAutoinjector
        - id: MechaniteAutoinjector
+       - id: CrowbarRed
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -430,6 +431,7 @@
        - id: KaiserAutoinjector
        - id: MechaniteAutoinjector
        - id: MechaniteAutoinjector
+       - id: CrowbarRed
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -441,3 +443,62 @@
         - id: MagazinePistolSubMachineGun
         - id: MagazinePistolSubMachineGun
         - id: MagazinePistolSubMachineGun
+        
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAssault
+  id: ClothingBeltBeltAssaultShieldLevymenRifleman
+  components:
+    - type: StorageFill
+      contents:
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAssault
+  id: ClothingBeltBeltAssaultShieldLevymenSMG
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistolSubMachineGunHeavy
+        - id: MagazinePistolSubMachineGunHeavy
+        - id: MagazinePistolSubMachineGunHeavy
+        
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAssault
+  id: ClothingBeltBeltAssaultShieldSpecopsRifleman
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineRifleUranium
+        - id: MagazineRifleUranium
+        - id: MagazineRifleUranium
+        - id: MagazineRifleUranium
+        - id: KaiserAutoinjector
+        - id: KaiserAutoinjector
+        - id: MechaniteAutoinjector
+        - id: MechaniteAutoinjector
+        - id: CrowbarRed
+        
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBeltAssault
+  id: ClothingBeltBeltAssaultShieldSpecopsShotgun
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxShotgunUranium
+        - id: BoxShotgunUranium
+        - id: KaiserAutoinjector
+        - id: KaiserAutoinjector
+        - id: MechaniteAutoinjector
+        - id: MechaniteAutoinjector
+        - id: CrowbarRed
