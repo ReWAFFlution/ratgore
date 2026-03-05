@@ -59,6 +59,8 @@ public sealed class PointCannonSystem : EntitySystem
     // Optimization: Cooldown for grid shape updates to avoid recalculating firing ranges too often
     private readonly Dictionary<EntityUid, float> _gridUpdateCooldown = new();
     private const float GridUpdateCooldownTime = 0.5f; // seconds
+    private int CannonCheckRange = 25;
+    private HashSet<EntityUid> QueuedGrids = new();
 
     public override void Initialize()
     {
@@ -72,6 +74,7 @@ public sealed class PointCannonSystem : EntitySystem
         SubscribeLocalEvent<TargetingConsoleComponent, BoundUIClosedEvent>(OnConsoleClosed);
         SubscribeLocalEvent<TargetingConsoleComponent, TargetingConsoleFireMessage>(OnConsoleFire);
         SubscribeLocalEvent<TargetingConsoleComponent, TargetingConsoleGroupChangedMessage>(OnConsoleGroupChanged);
+        SubscribeLocalEvent<TargetingConsoleComponent, FireControlConsoleRefreshServerMessage>(OnRefreshServer);
         SubscribeLocalEvent<TargetingConsoleComponent, ComponentRemove>(OnConsoleDelete);
         SubscribeLocalEvent<TargetingConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchor);
 
@@ -79,10 +82,7 @@ public sealed class PointCannonSystem : EntitySystem
         SubscribeLocalEvent<PointCannonComponent, EntParentChangedMessage>(OnCannonDetach);
         SubscribeLocalEvent<PointCannonComponent, ReAnchorEvent>(OnCannonDetach);
 
-        SubscribeLocalEvent<MapGridComponent, GridFixtureChangeEvent>(OnGridShapeChange);
-
         SubscribeLocalEvent<PointCannonLinkToolComponent, UseInHandEvent>(OnLinkToolHandUse);
-        SubscribeLocalEvent<PointCannonComponent, InteractUsingEvent>(OnLinkToolUse);
     }
 
     public override void Update(float frameTime)
@@ -111,44 +111,39 @@ public sealed class PointCannonSystem : EntitySystem
 
         // Process grid update cooldowns
         var toRemove = new List<EntityUid>();
-        foreach (var (gridUid, timer) in _gridUpdateCooldown)
+        foreach (var (uid, timer) in _gridUpdateCooldown)
         {
             if (timer <= 0)
             {
                 // Time to process
-                ProcessGridShapeChange(gridUid);
-                toRemove.Add(gridUid);
+                if (!TryComp<TargetingConsoleComponent>(uid, out var consoleComp))
+                    continue;
+                ProcessGridShapeChange(uid, consoleComp);
+                toRemove.Add(uid);
             }
             else
             {
-                _gridUpdateCooldown[gridUid] = timer - frameTime;
+                _gridUpdateCooldown[uid] = timer - frameTime;
             }
         }
-        foreach (var grid in toRemove)
+        foreach (var id in toRemove)
         {
-            _gridUpdateCooldown.Remove(grid);
+            _gridUpdateCooldown.Remove(id);
         }
     }
 
-    private void OnGridShapeChange(EntityUid gridUid, MapGridComponent grid, ref GridFixtureChangeEvent args)
+    private void ProcessGridShapeChange(EntityUid console, TargetingConsoleComponent component)
     {
-        // Cooldown to avoid excessive recalculations
-        if (_gridUpdateCooldown.ContainsKey(gridUid))
-            _gridUpdateCooldown[gridUid] = GridUpdateCooldownTime; // reset timer
-        else
-            _gridUpdateCooldown[gridUid] = GridUpdateCooldownTime;
+            UnlinkAllCannonsFromConsole(console, component);
+            LinkAllCannonsToConsole(console, component);
     }
 
-    private void ProcessGridShapeChange(EntityUid gridUid)
+    private void OnRefreshServer(EntityUid console, TargetingConsoleComponent component, FireControlConsoleRefreshServerMessage args)
     {
-        var targetingConsoles = new HashSet<Entity<TargetingConsoleComponent>>();
-        _lookup.GetGridEntities(gridUid, targetingConsoles);
-        foreach (var console in targetingConsoles)
-        {
-            UnlinkAllCannonsFromConsole(console.Owner, console.Comp);
-            LinkAllCannonsToConsole(console.Owner, console.Comp);
-        }
-        _hardpoint.QueueHardpointRefresh(gridUid);
+            if (_gridUpdateCooldown.ContainsKey(console))
+                _gridUpdateCooldown[console] = GridUpdateCooldownTime; // reset timer
+            else
+                _gridUpdateCooldown[console] = GridUpdateCooldownTime;     
     }
 
     private void UnlinkAllCannonsFromConsole(EntityUid console, TargetingConsoleComponent comp)
@@ -184,8 +179,6 @@ public sealed class PointCannonSystem : EntitySystem
             OnConsoleDelete(console, comp, ref args);
             return;
         }
-
-        LinkAllCannonsToConsole(console, comp);
     }
 
     public void LinkAllCannonsToConsole(EntityUid console, TargetingConsoleComponent comp)
@@ -199,22 +192,9 @@ public sealed class PointCannonSystem : EntitySystem
         {
             if (!Transform(cannon.Owner).Anchored)
                 continue;
-            LinkCannon(cannon.Owner, console, comp, MetaData(cannon.Owner).EntityName);
-        }
-    }
-
-    public void LinkCannonToAllConsoles(EntityUid cannon)
-    {
-        var gridUid = Transform(cannon).GridUid;
-        if (gridUid is null)
-            return;
-        var consoleList = new HashSet<Entity<TargetingConsoleComponent>>();
-        _lookup.GetGridEntities(gridUid.Value, consoleList);
-        foreach (var console in consoleList)
-        {
-            if (!Transform(console.Owner).Anchored)
+            if (!TryComp<HardpointAnchorableOnlyComponent>(cannon.Owner, out var anchorComp) || anchorComp.anchoredTo is null)
                 continue;
-            LinkCannon(cannon, console.Owner, console.Comp, MetaData(cannon).EntityName);
+            LinkCannon(cannon.Owner, console, comp, MetaData(cannon.Owner).EntityName);
         }
     }
 
@@ -256,44 +236,16 @@ public sealed class PointCannonSystem : EntitySystem
     {
         uid.Comp.RegenerateCannons = true;
         _activeConsoles.Add(uid.Owner);
-
-        if (_playerMan.TryGetSessionByEntity(args.Actor, out var session))
-            TogglePvsOverride(uid.Comp.CurrentGroup, new[] { session }, true);
     }
 
     private void OnConsoleClosed(Entity<TargetingConsoleComponent> uid, ref BoundUIClosedEvent args)
     {
         _activeConsoles.Remove(uid.Owner);
-
-        if (_playerMan.TryGetSessionByEntity(args.Actor, out var session))
-            TogglePvsOverride(uid.Comp.CurrentGroup, new[] { session }, false);
     }
 
     private void OnCannonDetach<T>(Entity<PointCannonComponent> uid, ref T args)
     {
         UnlinkCannon(uid);
-    }
-
-    private void OnLinkToolUse(Entity<PointCannonComponent> uid, ref InteractUsingEvent args)
-    {
-        if (!TryComp<PointCannonLinkToolComponent>(args.Used, out var linkTool))
-            return;
-
-        var gridUid = Transform(uid).GridUid;
-        if (gridUid == null)
-            return;
-
-        // Optimization: Use grid-based lookup instead of enumerating all entities
-        var consoles = new HashSet<Entity<TargetingConsoleComponent>>();
-        _lookup.GetGridEntities(gridUid.Value, consoles);
-        foreach (var console in consoles)
-        {
-            if (!Transform(console.Owner).Anchored)
-                continue;
-            LinkCannon(uid, console.Owner, console.Comp, linkTool.GroupName);
-        }
-
-        _popSys.PopupEntity($"Added to {linkTool.GroupName}", args.User, args.User);
     }
 
     private void OnLinkToolHandUse(Entity<PointCannonLinkToolComponent> uid, ref UseInHandEvent args)
@@ -330,8 +282,10 @@ public sealed class PointCannonSystem : EntitySystem
         cannonComponent.LinkedConsoleId = consoleUid;
         cannonComponent.LinkedConsoleIds.Add(consoleUid);
 
-        if (group == console.CurrentGroupName)
-            TogglePvsOverride(new[] { cannonUid }, GetUiSessions(consoleUid), true);
+        RefreshFiringRanges(cannonUid, null, null, cannonComponent, CannonCheckRange);
+
+        //if (console.ActiveGroups.Contains(group))
+            //TogglePvsOverride(new[] { cannonUid }, GetUiSessions(consoleUid), true);
     }
 
     public void UnlinkCannon(EntityUid cannonUid)
@@ -357,11 +311,7 @@ public sealed class PointCannonSystem : EntitySystem
                     cannons.Remove(cannonUid);
                     
                     if (cannons.Count == 0 && group != "all")
-                    {
                         console.CannonGroups.Remove(group);
-                        if (console.CurrentGroupName == group)
-                            console.CurrentGroupName = "all";
-                    }
                 }
             }
             
@@ -392,11 +342,7 @@ public sealed class PointCannonSystem : EntitySystem
                 cannons.Remove(cannonUid);
                 
                 if (cannons.Count == 0 && group != "all")
-                {
                     console.CannonGroups.Remove(group);
-                    if (console.CurrentGroupName == group)
-                        console.CurrentGroupName = "all";
-                }
             }
         }
         
@@ -418,7 +364,6 @@ public sealed class PointCannonSystem : EntitySystem
             iffState,
             groups,
             GetNetEntityList(console.CurrentGroup));
-
         console.RegenerateCannons = false;
         console.PrevState = consoleState;
         _uiSys.SetUiState(uid, TargetingConsoleUiKey.Key, consoleState);
@@ -432,6 +377,7 @@ public sealed class PointCannonSystem : EntitySystem
             if (Deleted(cannonUid))
             {
                 console.CurrentGroup.RemoveAt(i);
+                TogglePvsOverride(new[] { cannonUid }, GetUiSessions(uid), false);
                 continue;
             }
 
@@ -442,13 +388,36 @@ public sealed class PointCannonSystem : EntitySystem
 
     private void OnConsoleGroupChanged(Entity<TargetingConsoleComponent> uid, ref TargetingConsoleGroupChangedMessage args)
     {
-        string prevGroup = uid.Comp.CurrentGroupName;
-        uid.Comp.CurrentGroupName = args.GroupName;
-        uid.Comp.RegenerateCannons = true;
-
         var sessions = GetUiSessions(uid);
-        TogglePvsOverride(uid.Comp.CannonGroups[prevGroup], sessions, false);
-        TogglePvsOverride(uid.Comp.CurrentGroup, sessions, true);
+
+        if (uid.Comp.ActiveGroups.Contains(args.GroupName))
+        {
+            if (args.GroupName == "all")
+                uid.Comp.ActiveGroups = new();
+            else
+                uid.Comp.ActiveGroups.Remove(args.GroupName);
+            TogglePvsOverride(uid.Comp.CannonGroups[args.GroupName], sessions, false); 
+        }
+        else
+        {
+            if (args.GroupName == "all")
+                uid.Comp.ActiveGroups = new() { "all" };
+            else
+                uid.Comp.ActiveGroups.Add(args.GroupName);
+            TogglePvsOverride(uid.Comp.CannonGroups[args.GroupName], sessions, true);
+        } 
+
+        var totalLength = 0;
+
+        foreach (var group in uid.Comp.ActiveGroups)
+            totalLength += uid.Comp.CannonGroups[group].Count;
+
+        var selected = new List<EntityUid>(totalLength);
+
+        foreach (var group in uid.Comp.ActiveGroups)
+            selected.AddRange(uid.Comp.CannonGroups[group]);
+
+        uid.Comp.CurrentGroup = selected;
     }
 
     public bool TryFireCannon(
