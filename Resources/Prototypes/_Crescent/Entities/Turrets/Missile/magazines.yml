@@ -41,7 +41,7 @@
   id: Magazine48mmRocketGorlex
   name: Gorlex 48mm loading box
   description: A munitions drum designed to ease loading of 60mm rocket systems. Comes 6 rockets to a box. This one has been painted red.
-  parent: Magazine48mm
+  parent: Magazine48mmRocket
   components:
     - type: Sprite
       layers:
@@ -57,7 +57,7 @@
   id: Magazine60mm
   name: 60mm loading box
   description: A munitions drum designed to ease loading of 60mm rocket systems. Comes 6 rockets to a box.
-  parent: Magazine48mm
+  parent: Magazine48mmRocket
   components:
     - type: BallisticAmmoProvider
       whitelist:
@@ -69,7 +69,7 @@
   id: Magazine60mmGorlex
   name: Gorlex 60mm loading box
   description: A munitions drum designed to ease loading of 60mm rocket systems. Comes 6 rockets to a box. This one has been painted red.
-  parent: Magazine48mm
+  parent: Magazine48mmRocket
   components:
     - type: BallisticAmmoProvider
       whitelist:
@@ -88,7 +88,7 @@
   id: Magazine60mmNCWL
   name: Homeguard 60mm loading box
   description: A munitions drum designed to ease loading of 60mm rocket systems. Comes 6 rockets to a box. This one has been expertly painted a shade of communard orange.
-  parent: Magazine48mm
+  parent: Magazine48mmRocket
   components:
     - type: BallisticAmmoProvider
       whitelist:
@@ -107,7 +107,7 @@
   id: Magazine60mmSHI
   name: SHI 60mm loading box
   description: A munitions drum designed to ease loading of 60mm rocket systems. Comes 6 rockets to a box. For the downside of being painted Shinohara grey this one comes with guided missiles.
-  parent: Magazine48mm
+  parent: Magazine48mmRocket
   components:
     - type: BallisticAmmoProvider
       whitelist:
