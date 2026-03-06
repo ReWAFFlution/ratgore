@@ -30,7 +30,7 @@
   - !type:AddComponentSpecial
     components:
       - type: ChatRank
-        rank: crescent-rank-baron
+        rank: crescent-rank-regent
       - type: HullrotFaction
         faction: DSM
       - type: LanguageAdder
@@ -95,7 +95,6 @@
     jumpsuit: ClothingUniformJumpsuitImperialGovernor
     shoes: ClothingShoesBootsImperialGovernorBoots
     back: ClothingBackpackSatchelLeather
-    head: ClothingHeadHatImperialBicorne
     outerClothing: ClothingOuterCoatImperialRegent
     id: RegentEmpirePDA
     ears: ClothingHeadsetEmpire

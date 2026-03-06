@@ -1,4 +1,4 @@
-ent-RegentEmpirePDA = ПДА регента
+ent-RegentEmpirePDA = ПДА губернатора
     .desc = Фиолетовый для Империи.
 
 ent-PretorianKnightPDA = ПДА рыцаря-преторианца

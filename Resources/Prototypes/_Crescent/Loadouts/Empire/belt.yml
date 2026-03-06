@@ -19,6 +19,7 @@
         - CourtierDSM
         - TemplarDSM
         - WealthDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutBeltSheathDSMRapier
@@ -41,6 +42,7 @@
         - CourtierDSM
         - TemplarDSM
         - WealthDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutBeltSheathDSMDuelingKhopesh
@@ -64,6 +66,7 @@
         - TemplarDSM
         - WealthDSM
         - LevymanDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutBeltSheathDSMBaton
@@ -86,3 +89,4 @@
         - CourtierDSM
         - TemplarDSM
         - WealthDSM
+        - RegentEmpireDSM

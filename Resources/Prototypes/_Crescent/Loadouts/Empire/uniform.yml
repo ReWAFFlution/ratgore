@@ -18,6 +18,7 @@
         - RitterDSM
         - LevymanDSM
         - TemplarDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutUniformDSMNobleMale
@@ -42,6 +43,7 @@
         - CourtierDSM
         - TemplarDSM
         - WealthDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutUniformDSMNobleFemale
@@ -66,3 +68,4 @@
         - CourtierDSM
         - TemplarDSM
         - WealthDSM
+        - RegentEmpireDSM

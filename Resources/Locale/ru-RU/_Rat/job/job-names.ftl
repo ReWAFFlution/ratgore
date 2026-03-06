@@ -11,7 +11,7 @@
 
 # empire
 
-job-name-regent-empire = Регент Империи
+job-name-regent-empire = Губернатор
 job-name-pretorian-knight = Рыцарь-преторианец
 
 # srm

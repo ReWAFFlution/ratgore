@@ -17,6 +17,7 @@
         - RitterDSM
         - CourtierDSM
         - TemplarDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutHeadDSMHat
@@ -44,6 +45,7 @@
         - ScribeDSM
         - SurgeonDSM
         - TemplarDSM
+        - RegentEmpireDSM
         - WealthDSM
 
 - type: loadout
@@ -62,5 +64,6 @@
         - GovernorDSM
         - KnightDSM
         - RitterDSM
+        - RegentEmpireDSM
         - LevymanDSM
         - TemplarDSM

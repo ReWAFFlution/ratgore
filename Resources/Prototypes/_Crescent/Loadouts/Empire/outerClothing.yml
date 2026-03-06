@@ -16,6 +16,7 @@
         - RitterDSM
         - LevymanDSM
         - TemplarDSM
+        - RegentEmpireDSM
 
 - type: loadout
   id: LoadoutOuterArmorDSMImperialNullweavePsion

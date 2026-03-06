@@ -17,6 +17,7 @@ crescent-rank-shi-employee = Сотрудник
 crescent-rank-shi-medtech = Medtech
 # empire
 crescent-rank-baron = Лорд-адмирал
+crescent-rank-regent = Регент
 crescent-rank-adjutant = Адъютант
 crescent-rank-knight = Сэр
 crescent-rank-manatarms = Леви
