@@ -31,10 +31,6 @@ using Content.Shared.Crescent.Radar;
 
 namespace Content.Server.PointCannons;
 
-/// <summary>
-///     Manages point defense cannons and targeting consoles.
-///     Optimized version with reduced allocations and more efficient queries.
-/// </summary>
 public sealed class PointCannonSystem : EntitySystem
 {
     [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
@@ -53,10 +49,8 @@ public sealed class PointCannonSystem : EntitySystem
     private float _accumulatedFrameTime;
     private float _uiTps;
 
-    // Optimization: Track consoles with open UI to avoid enumerating all consoles every update
     private readonly HashSet<EntityUid> _activeConsoles = new();
 
-    // Optimization: Cooldown for grid shape updates to avoid recalculating firing ranges too often
     private readonly Dictionary<EntityUid, float> _gridUpdateCooldown = new();
     private const float GridUpdateCooldownTime = 0.5f; // seconds
     private int CannonCheckRange = 25;
@@ -89,7 +83,6 @@ public sealed class PointCannonSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // UI update throttling
         _accumulatedFrameTime += frameTime;
         float targetTime = _uiTps > 0 ? 1.0f / _uiTps : 1.0f;
         if (_accumulatedFrameTime < targetTime)
@@ -98,7 +91,6 @@ public sealed class PointCannonSystem : EntitySystem
         if (_accumulatedFrameTime > targetTime)
             _accumulatedFrameTime = 0;
 
-        // Update only consoles with open UI (tracked in _activeConsoles)
         foreach (var uid in _activeConsoles)
         {
             if (!TryComp<TargetingConsoleComponent>(uid, out var console))
@@ -109,13 +101,11 @@ public sealed class PointCannonSystem : EntitySystem
             UpdateConsoleState(uid, console);
         }
 
-        // Process grid update cooldowns
         var toRemove = new List<EntityUid>();
         foreach (var (uid, timer) in _gridUpdateCooldown)
         {
             if (timer <= 0)
             {
-                // Time to process
                 if (!TryComp<TargetingConsoleComponent>(uid, out var consoleComp))
                     continue;
                 ProcessGridShapeChange(uid, consoleComp);
@@ -292,16 +282,14 @@ public sealed class PointCannonSystem : EntitySystem
     {
         if (!TryComp<PointCannonComponent>(cannonUid, out var cannonComp))
             return;
-        
-        // Create a snapshot of console IDs before iterating
+
         var consoleIds = cannonComp.LinkedConsoleIds.ToList();
         
         foreach (var consoleUid in consoleIds)
         {
             if (!TryComp<TargetingConsoleComponent>(consoleUid, out var console))
                 continue;
-            
-            // Get a snapshot of groups to iterate safely
+
             var groups = console.CannonGroups.Keys.ToList();
             
             foreach (string group in groups)
@@ -356,7 +344,6 @@ public sealed class PointCannonSystem : EntitySystem
         IFFInterfaceState iffState = _shuttleConSys.GetIFFState(uid,
             console.RegenerateCannons ? null : console.PrevState?.IFFState.Turrets);
 
-        // Optimization: avoid ToList() if not needed
         List<string>? groups = console.RegenerateCannons ? console.CannonGroups.Keys.ToList() : null;
 
         var consoleState = new TargetingConsoleBoundUserInterfaceState(
@@ -480,7 +467,6 @@ public sealed class PointCannonSystem : EntitySystem
         var gridUid = form.GridUid.Value;
         var cannonPos = form.LocalPosition;
 
-        // Get entities in range on the same grid
         var entities = _lookup.GetEntitiesInRange(uid, range, LookupFlags.Static);
         var sectors = new List<(Angle start, Angle width)>();
 
@@ -490,7 +476,6 @@ public sealed class PointCannonSystem : EntitySystem
             if (otherForm.GridUid != gridUid)
                 continue;
 
-            // Quick grid check first (before expensive component resolution)
             var dir = otherForm.LocalPosition - cannonPos;
             if (!otherForm.Anchored)
                 continue;
@@ -517,10 +502,8 @@ public sealed class PointCannonSystem : EntitySystem
         for (int i = 1; i < sectors.Count; i++)
         {
             var next = sectors[i];
-            // Check if next.start is within current sector (considering circular wrap)
             if (CrescentHelpers.AngSectorsOverlap(current.start, current.width, next.start, next.width))
             {
-                // Merge
                 var (newStart, newWidth) = CrescentHelpers.AngCombinedSector(current.start, current.width, next.start, next.width);
                 current = (newStart, newWidth);
             }
@@ -532,7 +515,6 @@ public sealed class PointCannonSystem : EntitySystem
         }
         merged.Add(current);
 
-        // Add clearance
         var maxSpread = gun.MaxAngle + Angle.FromDegrees(10);
         var clearance = maxSpread + cannon.ClearanceAngle;
 
@@ -547,7 +529,6 @@ public sealed class PointCannonSystem : EntitySystem
 
     private (Angle, Angle) GetObstacleSector(Vector2 delta)
     {
-        // Original implementation (kept as is)
         Angle dirAngle = CrescentHelpers.AngNormal(new Angle(delta));
         Vector2 a, b;
 
