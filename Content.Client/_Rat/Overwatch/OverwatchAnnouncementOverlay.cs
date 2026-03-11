@@ -131,7 +131,7 @@ public sealed class OverwatchAnnouncementOverlay : Overlay
         {
             Reverse = true;
             _nextUpd += TimeSpan.FromSeconds(AnnouncementDisplayDuration);
-            Index++;
+            return;
         }
 
         if (Reverse && Index == 0)
@@ -185,15 +185,7 @@ public sealed class OverwatchAnnouncementOverlay : Overlay
     /// </summary>
     private Vector2 CalcPosition(Font font, string str, Vector2 viewport, int yOffset)
     {
-        Vector2 strSize = new();
-        foreach (Rune r in str)
-        {
-            if (font.TryGetCharMetrics(r, 1, out var metrics))
-            {
-                strSize.X += metrics.Width;
-                strSize.Y = Math.Max(strSize.Y, metrics.Height);
-            }
-        }
+        var strSize = CalcTextSize(font, str);
 
         return new Vector2((viewport.X - strSize.X) / 2, strSize.Y + yOffset);
     }

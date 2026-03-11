@@ -600,11 +600,12 @@ public sealed class OverwatchSystem : EntitySystem
         base.Update(frameTime);
 
         _updateTimer += frameTime;
+        _cacheInvalidationTimer += frameTime;
+
         if (_updateTimer < UpdateInterval)
             return;
 
         _updateTimer -= UpdateInterval;
-        _cacheInvalidationTimer += frameTime;
 
         if (_cacheInvalidationTimer >= CacheInvalidationInterval)
         {

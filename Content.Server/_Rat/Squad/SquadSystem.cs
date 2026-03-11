@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Rat.Squad;
+using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 
@@ -17,6 +18,13 @@ public sealed class SquadSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _squadsByFaction.Clear();
+        _nextSquadId = 1;
     }
 
     /// <summary>

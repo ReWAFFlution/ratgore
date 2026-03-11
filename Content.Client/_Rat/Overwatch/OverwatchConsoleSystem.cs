@@ -199,7 +199,7 @@ public sealed class OverwatchConsoleSystem : EntitySystem
         _toRelay.Clear();
 
         var eyePosition = _eye.CurrentEye.Position;
-        var playerCoords = playerTransform.Coordinates;
+        var listenerCoords = _transform.ToCoordinates(eyePosition);
         var maxDistanceSquared = MaxSoundRelayDistance * MaxSoundRelayDistance;
 
         var activeSounds = new HashSet<EntityUid>();
@@ -207,11 +207,14 @@ public sealed class OverwatchConsoleSystem : EntitySystem
         var query = AllEntityQuery<AudioComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var audio, out var xform))
         {
+            if (IsClientSide(uid))
+                continue;
+
             if (eyePosition.MapId != xform.MapID)
                 continue;
 
             var audioCoords = xform.Coordinates;
-            if (!audioCoords.TryDelta(EntityManager, _transform, playerCoords, out var delta))
+            if (!audioCoords.TryDelta(EntityManager, _transform, listenerCoords, out var delta))
                 continue;
 
             var distanceSquared = delta.LengthSquared();
