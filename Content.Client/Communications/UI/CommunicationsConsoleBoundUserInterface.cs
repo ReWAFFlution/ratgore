@@ -79,7 +79,7 @@ namespace Content.Client.Communications.UI
             {
                 _menu.CanAnnounce = commsState.CanAnnounce;
                 _menu.CanBroadcast = commsState.CanBroadcast;
-                _menu.CanCall = commsState.CanCall;
+                _menu.CanCall = /*commsState.CanCall*/ false; // rat-change
                 _menu.CountdownStarted = commsState.CountdownStarted;
                 _menu.AlertLevelSelectable = commsState.AlertLevels != null && !float.IsNaN(commsState.CurrentAlertDelay) && commsState.CurrentAlertDelay <= 0;
                 _menu.CurrentLevel = commsState.CurrentAlert;
