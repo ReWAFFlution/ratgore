@@ -19,4 +19,10 @@ public sealed partial class RatOverwatchWatchingComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Console;
+
+    /// <summary>
+    /// Сущность камеры, через которую осуществляется наблюдение.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? Camera;
 }

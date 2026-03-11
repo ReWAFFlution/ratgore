@@ -347,6 +347,10 @@ public sealed class OverwatchSystem : EntitySystem
         if (player == null || !player.Valid)
             return;
 
+        if (!TryComp<HullrotFactionComponent>(player, out var factionComp) ||
+            factionComp.Faction != ent.Comp.Faction)
+            return;
+
         _squadSystem.RemoveFromSquad(player);
         RefreshData(ent);
     }
@@ -456,7 +460,7 @@ public sealed class OverwatchSystem : EntitySystem
         if (!cameraComp.Active)
             _cameraSystem.SetActive(neckItem.Value, true, cameraComp);
 
-        _cameraSystem.AddActiveViewer(neckItem.Value, actor, neckItem.Value, cameraComp);
+        _cameraSystem.AddActiveViewer(neckItem.Value, actor, ent.Owner, cameraComp);
 
         var cameraCompTarget = EnsureComp<RatOverwatchCameraComponent>(target);
         cameraCompTarget.Watching.Add(actor);
@@ -464,6 +468,7 @@ public sealed class OverwatchSystem : EntitySystem
         var watchingCompActor = EnsureComp<RatOverwatchWatchingComponent>(actor);
         watchingCompActor.Watching = target;
         watchingCompActor.Console = ent.Owner;
+        watchingCompActor.Camera = neckItem.Value;
 
         _watchingPairs[actor] = target;
 
@@ -512,6 +517,7 @@ public sealed class OverwatchSystem : EntitySystem
         _watchingPairs.Remove(watcher);
         watchingComp.Watching = null;
         watchingComp.Console = null;
+        watchingComp.Camera = null;
     }
 
     /// <summary>
@@ -543,6 +549,7 @@ public sealed class OverwatchSystem : EntitySystem
         _eyeSystem.SetTarget(ent.Owner, null);
         _watchingPairs.Remove(ent.Owner);
         ent.Comp.Console = null;
+        ent.Comp.Camera = null;
     }
 
     /// <summary>
