@@ -86,6 +86,7 @@ public sealed class OverwatchSystem : EntitySystem
         SubscribeLocalEvent<OverwatchConsoleComponent, BeforeActivatableUIOpenEvent>(OnBeforeUIOpen);
         SubscribeLocalEvent<OverwatchConsoleComponent, OverwatchRefreshMessage>(OnRefresh);
         SubscribeLocalEvent<OverwatchConsoleComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<OverwatchConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<RatOverwatchWatchingComponent, MoveInputEvent>(OnWatchingMoveInput);
         SubscribeLocalEvent<RatOverwatchWatchingComponent, ComponentShutdown>(OnWatchingShutdown);
         SubscribeLocalEvent<RatOverwatchCameraComponent, ComponentShutdown>(OnCameraShutdown);
@@ -475,6 +476,7 @@ public sealed class OverwatchSystem : EntitySystem
         watchingCompActor.Watching = target;
         watchingCompActor.Console = ent.Owner;
         watchingCompActor.Camera = neckItem.Value;
+        Dirty(actor, watchingCompActor);
 
         _watchingPairs[actor] = target;
 
@@ -524,6 +526,12 @@ public sealed class OverwatchSystem : EntitySystem
         watchingComp.Watching = null;
         watchingComp.Console = null;
         watchingComp.Camera = null;
+        Dirty(watcher, watchingComp);
+    }
+
+    private void OnConsoleShutdown(Entity<OverwatchConsoleComponent> ent, ref ComponentShutdown args)
+    {
+        StopWatchingForConsole(ent.Owner);
     }
 
     /// <summary>
@@ -545,6 +553,7 @@ public sealed class OverwatchSystem : EntitySystem
         if (TryComp<RatOverwatchCameraComponent>(target, out var cameraCompTarget))
         {
             cameraCompTarget.Watching.Remove(ent.Owner);
+            Dirty(target, cameraCompTarget);
         }
 
         if (TryComp<ActorComponent>(ent.Owner, out var actorComp))
@@ -580,16 +589,21 @@ public sealed class OverwatchSystem : EntitySystem
         if (args.Powered)
             return;
 
-        foreach (var (watcher, target) in _watchingPairs.ToList())
+        StopWatchingForConsole(ent.Owner);
+
+        _uiSystem.CloseUi(ent.Owner, OverwatchUiKey.Key);
+    }
+
+    private void StopWatchingForConsole(EntityUid console)
+    {
+        foreach (var (watcher, _) in _watchingPairs.ToList())
         {
             if (TryComp<RatOverwatchWatchingComponent>(watcher, out var watchingComp) &&
-                watchingComp.Console == ent.Owner)
+                watchingComp.Console == console)
             {
                 StopWatching(watcher, watchingComp);
             }
         }
-
-        _uiSystem.CloseUi(ent.Owner, OverwatchUiKey.Key);
     }
 
     /// <summary>
