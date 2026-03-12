@@ -58,13 +58,17 @@ public sealed class SquadSystem : EntitySystem
         if (!_squadsByFaction[faction].Remove(squadId))
             return false;
 
+        var toRemove = new List<EntityUid>();
         var query = AllEntityQuery<SquadComponent>();
         while (query.MoveNext(out var uid, out var squadComp))
         {
             if (squadComp.SquadId == squadId)
-            {
-                RemComp<SquadComponent>(uid);
-            }
+                toRemove.Add(uid);
+        }
+
+        foreach (var uid in toRemove)
+        {
+            RemComp<SquadComponent>(uid);
         }
 
         return true;
@@ -103,7 +107,7 @@ public sealed class SquadSystem : EntitySystem
     /// <summary>
     /// Получить список всех отрядов фракции.
     /// </summary>
-    public Dictionary<int, SquadInfo> GetFactionSquads(string faction)
+    public IReadOnlyDictionary<int, SquadInfo> GetFactionSquads(string faction)
     {
         if (!_squadsByFaction.ContainsKey(faction))
             return new Dictionary<int, SquadInfo>();

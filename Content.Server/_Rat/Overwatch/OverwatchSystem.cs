@@ -307,6 +307,13 @@ public sealed class OverwatchSystem : EntitySystem
     /// </summary>
     private void OnCreateSquad(Entity<OverwatchConsoleComponent> ent, ref OverwatchCreateSquadMessage args)
     {
+        if (args.Actor is not { Valid: true } actor)
+            return;
+
+        var userFaction = GetUserFaction(actor);
+        if (string.IsNullOrEmpty(userFaction) || userFaction != ent.Comp.Faction)
+            return;
+
         var created = _squadSystem.CreateSquad(ent.Comp.Faction, args.SquadName);
         if (created)
         {
@@ -319,6 +326,13 @@ public sealed class OverwatchSystem : EntitySystem
     /// </summary>
     private void OnDeleteSquad(Entity<OverwatchConsoleComponent> ent, ref OverwatchDeleteSquadMessage args)
     {
+        if (args.Actor is not { Valid: true } actor)
+            return;
+
+        var userFaction = GetUserFaction(actor);
+        if (string.IsNullOrEmpty(userFaction) || userFaction != ent.Comp.Faction)
+            return;
+
         if (_squadSystem.RemoveSquad(ent.Comp.Faction, args.SquadId))
         {
             RefreshData(ent);
@@ -330,6 +344,13 @@ public sealed class OverwatchSystem : EntitySystem
     /// </summary>
     private void OnAssignSquad(Entity<OverwatchConsoleComponent> ent, ref OverwatchAssignSquadMessage args)
     {
+        if (args.Actor is not { Valid: true } actor)
+            return;
+
+        var userFaction = GetUserFaction(actor);
+        if (string.IsNullOrEmpty(userFaction) || userFaction != ent.Comp.Faction)
+            return;
+
         var player = GetEntity(args.Player);
         if (!player.Valid)
             return;
@@ -349,6 +370,13 @@ public sealed class OverwatchSystem : EntitySystem
     /// </summary>
     private void OnRemoveSquadMember(Entity<OverwatchConsoleComponent> ent, ref OverwatchRemoveSquadMemberMessage args)
     {
+        if (args.Actor is not { Valid: true } actor)
+            return;
+
+        var userFaction = GetUserFaction(actor);
+        if (string.IsNullOrEmpty(userFaction) || userFaction != ent.Comp.Faction)
+            return;
+
         var player = GetEntity(args.Player);
         if (!player.Valid)
             return;
@@ -559,7 +587,7 @@ public sealed class OverwatchSystem : EntitySystem
             Dirty(target, cameraCompTarget);
         }
 
-        if (TryComp<ActorComponent>(ent.Owner, out var actorComp))
+        if (TryComp<ActorComponent>(ent.Owner, out var actorComp) && actorComp.PlayerSession != null)
         {
             _viewSubscriberSystem.RemoveViewSubscriber(target, actorComp.PlayerSession);
         }

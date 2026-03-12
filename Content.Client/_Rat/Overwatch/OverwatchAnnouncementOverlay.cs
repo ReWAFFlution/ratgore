@@ -203,7 +203,7 @@ public sealed class OverwatchAnnouncementOverlay : Overlay
         {
             if (font.TryGetCharMetrics(r, 1, out var metrics))
             {
-                strSize.X += metrics.Width;
+                strSize.X += metrics.Advance;
                 strSize.Y = Math.Max(strSize.Y, metrics.Height);
             }
         }
