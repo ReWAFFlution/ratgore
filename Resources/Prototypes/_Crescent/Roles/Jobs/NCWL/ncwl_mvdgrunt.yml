@@ -4,6 +4,10 @@
   description: job-description-ncwl-mvd-grunt
   playTimeTracker: JobMVDGruntNCWL
   ranks:
+    RatRankMVDGruntLead:
+    - !type:CharacterPlaytimeRequirement
+      tracker: JobMVDGruntNCWL
+      min: 108000 # 30 hours
     RatRankMVDGruntSenior:
     - !type:CharacterPlaytimeRequirement
       tracker: JobMVDGruntNCWL
@@ -11,7 +15,7 @@
     RatRankCommandantMiddle:
     - !type:CharacterPlaytimeRequirement
       tracker: JobMVDGruntNCWL
-      min: 360000 # 10 hours
+      min: 36000 # 10 hours
     RatRankMVDGruntJunior: []
   weight: 99
   startingGear: MVDGruntNCWLGear
