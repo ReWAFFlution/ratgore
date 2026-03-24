@@ -27,8 +27,9 @@
     - !type:FactionRequirement
       factionID: "NCWL"
     - !type:CharacterSpeciesRequirement
+      inverted: true
       species:
-        - Human
+        - Voidborn
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
