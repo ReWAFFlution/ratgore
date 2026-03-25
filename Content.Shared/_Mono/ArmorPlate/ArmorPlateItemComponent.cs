@@ -21,20 +21,20 @@ public sealed partial class ArmorPlateItemComponent : Component
     /// </summary>
     [DataField]
     [AutoNetworkedField]
-    public float walkSpeedModifier = 1.0f;
+    public float WalkSpeedModifier = 1.0f;
 
     /// <summary>
     /// Sprint speed modifier applied when this plate is active in worn clothing.
     /// </summary>
     [DataField]
     [AutoNetworkedField]
-    public float sprintSpeedModifier = 1.0f;
+    public float SprintSpeedModifier = 1.0f;
 
     /// <summary>
     /// Multiplier applied when converting absorbed piercing damage to stamina damage.
     /// </summary>
     [DataField]
-    public float staminaDamageMultiplier = 1.0f;
+    public float StaminaDamageMultiplier = 1.0f;
 
     /// <summary>
     /// How much damage dealt to the plate is multiplied, by damagetype
