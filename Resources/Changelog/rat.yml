@@ -483,5 +483,19 @@ Entries:
     id: 64
     time: '2026-03-25T11:42:29.0000000+00:00'
     url: https://github.com/ss14-art/ratgore/pull/77
+  - author: ReWAFFlution
+    changes:
+      - type: Add
+        message: Добавлен фильтр сообщений.
+    id: 65
+    time: '2026-03-26T12:27:54.0000000+00:00'
+    url: https://github.com/ss14-art/ratgore/pull/79
+  - author: Gorox221
+    changes:
+      - type: Add
+        message: 'Добавлены два новых боевых импланта с активными способностями в вендомат интердайна: ИПМ TT-48 Сандевистан и ИПМ TT-98 Сердце берсерка'
+    id: 66
+    time: '2026-03-26T12:28:59.0000000+00:00'
+    url: https://github.com/ss14-art/ratgore/pull/78
 Name: Rat
 Order: -1
