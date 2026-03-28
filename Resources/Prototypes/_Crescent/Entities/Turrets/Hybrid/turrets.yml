@@ -52,8 +52,8 @@
           variation: 0.08
     - type: BasicEntityAmmoProvider
       proto: BulletPlasmaGatling
-      capacity: 120
-      count: 120
+      capacity: 50
+      count: 50
     - type: ApcPowerReceiver
       powerLoad: 2500
     - type: HardpointAnchorableOnly

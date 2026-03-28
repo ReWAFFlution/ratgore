@@ -30,7 +30,7 @@
           ents: []
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 167
+      projectileSpeed: 180
       burstFireRate: 15
       burstCooldown: 0.7
       shotsPerBurst: 6
@@ -99,15 +99,15 @@
           ents: []
     - type: Gun
       fireOnDropChance: 0
-      fireRate: 6
-      projectileSpeed: 167
+      fireRate: 10
+      projectileSpeed: 160
       selectedMode: FullAuto
       availableModes:
         - FullAuto
       angleDecay: 1
       minAngle: 2
       maxAngle: 4.5
-      angleIncrease: 0.25
+      angleIncrease: 0.75
       soundGunshot: /Audio/Weapons/Guns/Gunshots/vulcan.ogg
     - type: ItemSlots
       slots:
@@ -293,15 +293,16 @@
     - type: MagazineAmmoProvider
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 107
-      fireRate: 3
-      selectedMode: FullAuto
+      projectileSpeed: 140
+      burstFireRate: 20
+      shotsPerBurst: 2
+      burstCooldown: 0.15
+      selectedMode: Burst
       availableModes:
-        - FullAuto
-      angleDecay: 1
-      minAngle: 2.5
-      maxAngle: 5.5
-      angleIncrease: 0.5
+        - Burst
+      angleDecay: 2
+      minAngle: 1
+      maxAngle: 5
       soundGunshot: /Audio/Weapons/Guns/Gunshots/vulcan.ogg
     - type: ContainerContainer
       containers:
@@ -359,8 +360,8 @@
     - type: MagazineAmmoProvider
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 120
-      fireRate: 3
+      projectileSpeed: 107
+      fireRate: 8
       selectedMode: FullAuto
       availableModes:
         - FullAuto
@@ -427,15 +428,15 @@
                 collection: MetalGlassBreak
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 150
+      projectileSpeed: 125
       fireRate: 4
       selectedMode: FullAuto
       availableModes:
         - FullAuto
       angleDecay: 0.5
       minAngle: 1.5
-      maxAngle: 3
-      angleIncrease: 0.25
+      maxAngle: 5
+      angleIncrease: 1
       soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: ContainerContainer
       containers:
@@ -564,7 +565,7 @@
         ballistic-ammo: !type:Container
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 200
+      projectileSpeed: 100
       fireRate: 0.3
       selectedMode: FullAuto
       availableModes:

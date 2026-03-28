@@ -13,7 +13,7 @@
     ignoreWeaponGrid: true
     damage:
       types:
-        Structural: 320
+        Structural: 250
         Radiation: 80
   - type: PointLight
     radius: 3.5

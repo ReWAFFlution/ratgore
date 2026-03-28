@@ -216,13 +216,11 @@
           ents: []
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 170
-      burstFireRate: 15
-      burstCooldown: 1.5
-      shotsPerBurst: 3
-      selectedMode: Burst
+      projectileSpeed: 180
+      fireRate: 20
+      selectedMode: FullAuto
       availableModes:
-        - Burst
+        - FullAuto
       angleDecay: 0
       minAngle: 0.1
       maxAngle: 0.1
@@ -231,16 +229,16 @@
         params:
           variation: 0.12
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1.25
+      rechargeCooldown: 0.33
       rechargeSound:
         path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
         params:
           pitch: 1.2
           variation: 0.08
     - type: BasicEntityAmmoProvider
-      proto: BulletScourer
-      capacity: 24
-      count: 24
+      proto: BulletRetribution
+      capacity: 60
+      count: 60
     - type: ApcPowerReceiver
       powerLoad: 2500
     - type: HardpointAnchorableOnly
@@ -279,11 +277,13 @@
           ents: []
     - type: Gun
       fireOnDropChance: 0
-      projectileSpeed: 167
-      fireRate: 6
-      selectedMode: FullAuto
+      projectileSpeed: 180
+      burstFireRate: 20
+      burstCooldown: .2
+      shotsPerBurst: 3
+      selectedMode: Burst
       availableModes:
-        - FullAuto
+        - Burst
       angleDecay: 0
       minAngle: 0.1
       maxAngle: 0.1
@@ -292,7 +292,7 @@
         params:
           variation: 0.12
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 0.33
+      rechargeCooldown: 1.25
       rechargeSound:
         path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
         params:
@@ -300,8 +300,8 @@
           variation: 0.08
     - type: BasicEntityAmmoProvider
       proto: BulletRetribution
-      capacity: 60
-      count: 60
+      capacity: 24
+      count: 24
     - type: ApcPowerReceiver
       powerLoad: 2500
     - type: HardpointAnchorableOnly

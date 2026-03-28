@@ -78,7 +78,7 @@
     ignoreWeaponGrid: true
     damage:
       types:
-        Heat: 10
+        Heat: 25
   - type: ProjectileIFF
     visualType: Circle
     color: Red
@@ -87,15 +87,11 @@
     color: blue
     energy: 0.5
   - type: TimedDespawn
-    lifetime: 3 #501
+    lifetime: 3 #540
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/lasers.rsi
     layers:
       - state: laserlight
-  - type: ProjectileSpread
-    proto: BulletScourer
-    count: 9
-    spread: 5
 
 - type: entity
   id: BulletRetribution
@@ -109,7 +105,7 @@
     ignoreWeaponGrid: true
     damage:
       types:
-        Heat: 100
+        Heat: 65
   - type: ProjectileIFF
     visualType: Circle
     color: Red
@@ -118,7 +114,11 @@
     color: blue
     energy: 0.5
   - type: TimedDespawn
-    lifetime: 3 #501
+    lifetime: 5.9 #1062
+  - type: ProjectileSpread
+    proto: BulletRetribution
+    count: 9
+    spread: 3
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/lasers.rsi
     layers:
@@ -136,7 +136,7 @@
     ignoreWeaponGrid: true
     damage:
       types:
-        Heat: 250
+        Heat: 125
   - type: ProjectileIFF
     visualType: Circle
     color: Red
@@ -145,7 +145,7 @@
     color: blue
     energy: 0.5
   - type: TimedDespawn
-    lifetime: 16 #3200m
+    lifetime: 10 #2000m
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/lasers.rsi
     layers:

@@ -302,10 +302,10 @@
     ignoreWeaponGrid: true
     damage:
       types:
-        Structural: 400
+        Structural: 600
         Blunt: 200
   - type: TimedDespawn
-    lifetime: 16 #2480
+    lifetime: 21.7 #2495
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/arbalest.rsi
     layers:
@@ -326,8 +326,8 @@
     color: Red
   - type: HeatSeeking
     rotationSpeed: 10
-    acceleration: 45
-    topSpeed: 160
+    acceleration: 50
+    topSpeed: 180
     fieldOfView: 20
     defaultSeekingRange: 1500
     guidanceAlgorithm: PredictiveGuidance
@@ -351,7 +351,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 200
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -514,7 +514,7 @@
         Structural: 1000
         Blunt: 200
   - type: TimedDespawn
-    lifetime: 40 #2040m
+    lifetime: 40 #4000
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/gargoyle.rsi
     layers:
@@ -560,7 +560,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 750
+        damage: 500
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -654,7 +654,7 @@
         Structural: 2000
         Blunt: 500
   - type: TimedDespawn
-    lifetime: 25 #5000
+    lifetime: 62.5 #5000
   - type: Sprite
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/catapult.rsi
     layers:
