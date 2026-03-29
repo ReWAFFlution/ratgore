@@ -22,6 +22,8 @@
   canBeAntag: false
   requirements:
     - !type:CharacterWhitelistRequirement
+    - !type:CharacterOverallTimeRequirement
+      min: 126000
     - !type:FactionRequirement
         factionID: "TSP"
     - !type:CharacterTraitRequirement

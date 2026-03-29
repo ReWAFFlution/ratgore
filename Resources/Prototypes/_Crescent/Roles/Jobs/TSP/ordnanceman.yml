@@ -17,14 +17,16 @@
       tracker: JobOrdnancemanCMM
       min: 36000 # 10 hours
     RatRankCMMMinutemanSenior: []
-  weight: 18
+  weight: 26
   startingGear: OrdnancemanGear
   alwaysUseSpawner: true
   requireAdminNotify: false
-  icon: "JobIconOrdnanceman"
+  icon: "JobIconMinuteman"
   supervisors: You answer to your Colonial Marshal , Deputy Marshal and Watchmaster.
   canBeAntag: false
   requirements:
+    - !type:CharacterOverallTimeRequirement
+      min: 18000
     - !type:FactionRequirement
         factionID: "TSP"
     - !type:CharacterTraitRequirement
@@ -62,9 +64,11 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCMMOrdnanceman
     shoes: ClothingShoesBootsCombat
-    head: ClothingHeadHelmetCMMOrdnanceman
+    head: ClothingHeadHatBeretCap
     gloves: ClothingHandsGlovesCombat
     belt: ClothingBeltMinutemanPouches
     id: OrdnancemanPDA
     ears: ClothingHeadsetCMM
     pocket1: WeaponPistolHKUSP
+    neck: ClothingNeckScarfCMMCloak
+    outerClothing: ClothingOuterArmorCMM
