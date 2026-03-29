@@ -512,9 +512,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
+        // Use scanner grid if on-grid, otherwise use scanner entity itself as viewer
+        drawJob.selfGrid = ourGridId ?? _coordinates.Value.EntityId;
         if(ourGridId is not null)
         {
-            drawJob.selfGrid = ourGridId.Value;
             drawJob.selfMassCloaked = EntManager.HasComponent<MassCloakComponent>(ourGridId.Value);
         }
         drawJob.MidPointVector = MidPointVector;
@@ -544,7 +545,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             var gridBody = bodyQuery.GetComponent(gUid);
             EntManager.TryGetComponent<IFFComponent>(gUid, out var iff);
 
-            if (ourGridId.HasValue && !_shuttles.CanDraw(gUid, gridBody, iff, ourGridId.Value))
+            // Use scanner grid if on-grid, otherwise use scanner entity itself as viewer
+            var viewer = ourGridId ?? _coordinates.Value.EntityId;
+            if (!_shuttles.CanDraw(gUid, gridBody, iff, viewer))
                 continue;
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);

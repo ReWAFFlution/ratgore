@@ -134,13 +134,30 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         // If the grid is hidden, check if the viewer is also inside the same cloak field
         if ((iffComp.Flags & IFFFlags.Hide) != 0x0)
         {
-            // If there's a viewer and both have MassCloakedByComponent from the same console, allow visibility
-            if (viewer != null && TryComp(gridUid, out MassCloakedByComponent? targetCloaked) &&
+            if (viewer == null)
+                return false;
+
+            // First check if both have MassCloakedByComponent from the same console (on-grid/on-grid case)
+            if (TryComp(gridUid, out MassCloakedByComponent? targetCloaked) &&
                 TryComp(viewer, out MassCloakedByComponent? viewerCloaked) &&
                 targetCloaked.CloakingConsoleUid == viewerCloaked.CloakingConsoleUid)
             {
                 return true;
             }
+
+            // If target is cloaked, check if off-grid viewer is in the same cloaking field
+            if (TryComp(gridUid, out targetCloaked) &&
+                _xformQuery.TryGetComponent(viewer, out var viewerXform) &&
+                _xformQuery.TryGetComponent(targetCloaked.CloakingConsoleUid, out var consoleXform) &&
+                viewerXform.MapID == consoleXform.MapID)
+            {
+                var dist = (XformSystem.GetWorldPosition(viewerXform) - XformSystem.GetWorldPosition(consoleXform)).Length();
+                if (dist <= targetCloaked.CloakingRange)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 

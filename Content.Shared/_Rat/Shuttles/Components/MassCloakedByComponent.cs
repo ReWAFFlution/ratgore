@@ -15,4 +15,10 @@ public sealed partial class MassCloakedByComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid CloakingConsoleUid;
+
+    /// <summary>
+    /// The range of the cloaking field. Used to check if off-grid viewers are in the field.
+    /// </summary>
+    [ViewVariables]
+    public float CloakingRange = 100f;
 }
