@@ -25,7 +25,7 @@
       amount: 5 # DeltaV - Change from 10 to 5 to fit the guidebook recipe
     Blood:
       amount: 5 # DeltaV - Change from 10 to 5 to fit the guidebook recipe
-    Omnizine:   
+    Omnizine:
       amount: 5 # Ratgore - Changed due to inability to acquire Ectoplasm in hullrot at all
     Plasma:
       amount: 5 # DeltaV - Change from 10 to 5 to fit the guidebook recipe
