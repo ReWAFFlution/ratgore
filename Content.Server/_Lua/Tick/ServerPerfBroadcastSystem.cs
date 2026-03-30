@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿using Content.Shared._Lua.Performance;
-=======
 using Content.Shared._Lua.Performance;
->>>>>>> 7be28591cf ([Port] Sector Frontier tickrate)
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -30,10 +26,4 @@ public sealed class ServerPerfBroadcastSystem : EntitySystem
         };
         RaiseNetworkEvent(ev, Filter.Empty().AddAllPlayers(_players));
     }
-<<<<<<< HEAD
 }
-=======
-}
-
-
->>>>>>> 7be28591cf ([Port] Sector Frontier tickrate)

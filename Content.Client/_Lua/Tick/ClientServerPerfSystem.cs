@@ -18,10 +18,4 @@ public sealed class ClientServerPerfSystem : EntitySystem
         ServerFpsAvg = ev.ServerFpsAvg;
         ServerTickRate = ev.ServerTickRate;
     }
-<<<<<<< HEAD
 }
-=======
-}
-
-
->>>>>>> 7be28591cf ([Port] Sector Frontier tickrate)

@@ -14,7 +14,7 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<int> NetDynamicTickMinTickrate =
             CVarDef.Create("net.dynamictick.min_tickrate", 10, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<int> NetDynamicTickMaxTickrate =
-            CVarDef.Create("net.dynamictick.max_tickrate", 30, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamictick.max_tickrate", 20, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickCheckInterval =
             CVarDef.Create("net.dynamictick.check_interval", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickLowFpsMin =
