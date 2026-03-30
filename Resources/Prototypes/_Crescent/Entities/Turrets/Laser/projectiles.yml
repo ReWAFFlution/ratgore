@@ -92,10 +92,10 @@
     sprite: _Crescent/Objects/Turrets/Ammunition/Projectiles/lasers.rsi
     layers:
       - state: laserlight
-  - type: ProjectileSpread
-    proto: BulletScourer
-    count: 9
-    spread: 5
+#  - type: ProjectileSpread
+#    proto: BulletScourer
+#    count: 4
+#    spread: 3
 
 - type: entity
   id: BulletRetribution
