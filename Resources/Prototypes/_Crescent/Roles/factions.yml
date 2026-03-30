@@ -133,7 +133,7 @@
     state: fourfamilies
 
 - type: faction
-  name: "Великая Охота"
+  name: "Ополчение Святого Ромейна"
   id: SRM
   descriptionPrefix: |
     МИНИМАЛЬНОЕ ВРЕМЯ: 10 ЧАСОВ / 3 РАУНДА

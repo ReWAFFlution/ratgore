@@ -4,23 +4,11 @@
   description: job-description-tender
   playTimeTracker: JobTenderSRM
   ranks:
-    RatRankSRMHunterSrLead:
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobTenderSRM
-      min: 180000 # 50 hours
-    RatRankSRMHunterHigh:
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobTenderSRM
-      min: 144000 # 40 hours
-    RatRankSRMHunterLead:
-    - !type:CharacterPlaytimeRequirement
-      tracker: JobTenderSRM
-      min: 108000 # 30 hours
-    RatRankSRMHunterSenior:
+    RatRankSRMTenderSenior:
     - !type:CharacterPlaytimeRequirement
       tracker: JobTenderSRM
       min: 72000 # 20 hours
-    RatRankSRMHunterMiddle:
+    RatRankSRMTenderMiddle:
     - !type:CharacterPlaytimeRequirement
       tracker: JobTenderSRM
       min: 36000 # 10 hours

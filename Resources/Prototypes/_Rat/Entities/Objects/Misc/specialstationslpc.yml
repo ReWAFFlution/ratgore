@@ -15,7 +15,7 @@
     layers:
     - state: icon
   - type: StaticPrice
-    price: 500000
+    price: 10
   - type: ShipVoucher
     ship: Refuge
 
@@ -34,6 +34,6 @@
     layers:
     - state: icon
   - type: StaticPrice
-    price: 500000
+    price: 10
   - type: ShipVoucher
     ship: Ardour

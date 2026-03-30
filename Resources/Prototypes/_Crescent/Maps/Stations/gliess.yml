@@ -15,7 +15,7 @@
             sprite: _Crescent/ShipIcons/ifficons.rsi
             state: outpost
         - type: StationNameSetup
-          mapNameTemplate: 'ВО Беженец'
+          mapNameTemplate: 'ОСР Убежище'
         - type: VesselDesignation
           designation: vessel-designation-headquarters
         - type: Grammar
