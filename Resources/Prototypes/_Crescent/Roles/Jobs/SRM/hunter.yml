@@ -84,3 +84,4 @@
     gloves: ClothingHandsGlovesHunter
     pocket2: RomaineBible
     belt: ClothingBeltAssault
+    back: ClothingBackpackSRM
