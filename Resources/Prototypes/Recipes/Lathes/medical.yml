@@ -288,6 +288,7 @@
     Plasma: 200
     Steel: 200
     Glass: 300
+    Silver: 100
 
 - type: latheRecipe
   id: NaiserAutoinjector
@@ -298,6 +299,7 @@
     Plasma: 100
     Steel: 200
     Glass: 200
+    Silver: 50
 
 - type: latheRecipe
   id: ExileminusAutoinjector
@@ -305,13 +307,17 @@
   completetime: 2
   materials:
     Plastic: 100
-    Steel: 200
-    Glass: 250
+    Steel: 300
+    Silver: 150
+    Glass: 350
 
 - type: latheRecipe
   id: FallAutoinjector
   result: FallAutoinjector
   completetime: 2
   materials:
-    Steel: 200
-    Glass: 200
+    Steel: 300
+    Glass: 300
+    Plastic: 50
+    Gold: 100
+  
