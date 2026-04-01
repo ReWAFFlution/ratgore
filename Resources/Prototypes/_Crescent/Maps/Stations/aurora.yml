@@ -14,7 +14,7 @@
             sprite: _Crescent/ShipIcons/ifficons.rsi
             state: capital
         - type: StationNameSetup
-          mapNameTemplate: 'БМС Aurora Imperialis'
+          mapNameTemplate: 'БМС Аврора'
         - type: VesselDesignation
           designation: vessel-designation-headquarters
         - type: VesselDescription
