@@ -234,7 +234,7 @@
 - type: listing
   id: StoreListingSRMBolaShipment
   name: Ящик с болой
-  description: Партия с несколькими обычными и парой энергобол для эффективного отлова рабов...я имел ввиду реквизиции активов!
+  description: Партия с несколькими обычными и парой энергобол для эффективного отлова рабов... я имел ввиду реквизиции активов!
   icon: { sprite: _Nuclear14/Structures/Storage/Crates/woodencrates.rsi, state: army_crate }
   productEntity: CrateSRMBolaShipment
   cost:

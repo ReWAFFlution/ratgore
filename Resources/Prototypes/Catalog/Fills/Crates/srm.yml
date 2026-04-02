@@ -76,7 +76,7 @@
   id: CrateSRMSterilizer
   parent: CrateGenericSteel
   name: HP FLM-21Min Sterilizer Shipment
-  description: A shipment containing a two HP FLM-21Min Sterilizer flamethrower, stamped with the emblem of the Hunter's Pride Merchant's Guild.
+  description: A shipment containing a two HP FLM-21Min Sterilizer flamethrowers, stamped with the emblem of the Hunter's Pride Merchant's Guild.
   components:
   - type: StorageFill
     contents:
@@ -392,7 +392,7 @@
   id: CrateSRMRifleMag
   parent: CrateGenericSteel
   name: Rifle Magazine Shipment
-  description: A shipment containing of 7.62x51mm rifle magazines, the crate has clearly seen better days.
+  description: A shipment containing 7.62x51mm rifle magazines, the crate has clearly seen better days.
   components:
   - type: StorageFill
     contents:
@@ -403,7 +403,7 @@
   id: CrateSRMSniperMag
   parent: CrateGenericSteel
   name: Sniper Rifle Magazine Shipment
-  description: A shipment containing of 15.2x169mm sniper rifle magazines, the crate has clearly seen better days.
+  description: A shipment containing 15.2x169mm sniper rifle magazines, the crate has clearly seen better days.
   components:
   - type: StorageFill
     contents:
