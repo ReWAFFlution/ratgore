@@ -63,11 +63,11 @@
             MarshalCMM: [ 1, 1 ]
             DeputyMarshalCMM: [ 1, 1 ]
             WatchmasterCMM: [ 2, 2 ]
-            OrdnancemanCMM: [ 3, 3 ]
+            OrdnancemanCMM: [ 2, 2 ]
             PhysicianCMM: [ 3, 3 ]
             MachinistCMM: [ 2, 2 ]
-            MinutemanCMM: [ 10, 10 ]
-            GliessianDockhand: [ 5, 5 ]
+            MinutemanCMM: [ 6, 6 ]
+            GliessianDockhand: [ 3, 3 ]
             Spacer: [ -1, -1 ]
 
 
