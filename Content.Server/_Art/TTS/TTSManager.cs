@@ -77,28 +77,31 @@ public sealed class TTSManager
     /// <param name="speaker">Identifier of speaker</param>
     /// <param name="text">Formatted text</param>
     /// <returns>OGG audio bytes or null if failed</returns>
-    public async Task<byte[]?> ConvertTextToSpeech(string speaker, string text)
+    public async Task<byte[]?> ConvertTextToSpeech(string speaker, string text, string? effect)
     {
         WantedCount.Inc();
-        var cacheKey = GenerateCacheKey(speaker, text);
+        var cacheKey = GenerateCacheKey(speaker, text, effect);
         if (_cache.TryGetValue(cacheKey, out var data))
         {
             ReusedCount.Inc();
-            _sawmill.Verbose($"Use cached sound for '{text}' speech by '{speaker}' speaker");
+            _sawmill.Verbose($"Use cached sound for '{text}' speech by '{speaker}'({effect}) speaker");
             return data;
         }
 
-        _sawmill.Verbose($"Generate new audio for '{text}' speech by '{speaker}' speaker");
+        _sawmill.Verbose($"Generate new audio for '{text}' speech by '{speaker}'({effect}) speaker");
 
         var reqTime = DateTime.UtcNow;
         try
         {
             var timeout = _cfg.GetCVar(ArtCVars.TTSApiTimeout);
             var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
+            if (effect == null)
+                effect = "";
 
             var queryParams = System.Web.HttpUtility.ParseQueryString(string.Empty);
             queryParams["speaker"] = speaker;
             queryParams["text"] = text;
+            queryParams["effect"] = effect;
             queryParams["ext"] = "ogg";
 
             var url = $"{_apiUrl}?{queryParams}";
@@ -158,9 +161,9 @@ public sealed class TTSManager
     }
 
     [MethodImpl(MethodImplOptions.AggressiveOptimization)]
-    private string GenerateCacheKey(string speaker, string text)
+    private string GenerateCacheKey(string speaker, string text, string? effect)
     {
-        var keyData = Encoding.UTF8.GetBytes($"{speaker}/{text}");
+        var keyData = Encoding.UTF8.GetBytes($"{speaker}/{text}/{effect}");
         var hashBytes = System.Security.Cryptography.SHA256.HashData(keyData);
         return Convert.ToHexString(hashBytes);
     }

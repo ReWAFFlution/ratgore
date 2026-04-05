@@ -34,6 +34,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _ttsManager.ResetCache());
+        SubscribeLocalEvent<ActorComponent, TTSRadioPlayEvent>(OnTTSRadioPlayEvent);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
     }
@@ -62,6 +63,19 @@ public sealed partial class TTSSystem : EntitySystem
 
         HandleSay(uid, args.Message, args.Language, protoVoice.Speaker);
     }
+
+    private async void OnTTSRadioPlayEvent(EntityUid uid, ActorComponent comp, TTSRadioPlayEvent args)
+    {
+        HandleReceiveRadio(uid, args.Message, args.Voice);
+    }
+
+    private async void HandleReceiveRadio(EntityUid uid, string message, string speaker)
+    {
+        var normal = await GenerateTTS(message, speaker, "radio");
+        if (normal is null) return;
+        RaiseNetworkEvent(new PlayTTSEvent(normal, null), uid);
+    }
+
 
     private async void HandleSay(EntityUid uid, string message, LanguagePrototype language, string speaker)
     {
@@ -93,11 +107,11 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void HandleWhisper(EntityUid uid, string message, LanguagePrototype language, string speaker)
     {
-        var normal = await GenerateTTS(message, speaker, true);
+        var normal = await GenerateTTS(message, speaker);
         if (normal is null)
             return;
 
-        var obfuscated = await GenerateTTS(_language.ObfuscateSpeech(message, language), speaker, true);
+        var obfuscated = await GenerateTTS(_language.ObfuscateSpeech(message, language), speaker);
         if (obfuscated is null)
             return;
 
@@ -132,7 +146,7 @@ public sealed partial class TTSSystem : EntitySystem
     private readonly SemaphoreSlim _lock = new(1, 1);
 
     // ReSharper disable once InconsistentNaming
-    private async Task<byte[]?> GenerateTTS(string text, string speaker, bool isWhisper = false)
+    private async Task<byte[]?> GenerateTTS(string text, string speaker, string? effect = null)
     {
         var textSanitized = Sanitize(text);
         if (string.IsNullOrEmpty(textSanitized))
@@ -141,7 +155,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (char.IsLetter(textSanitized[^1]))
             textSanitized += ".";
 
-        var taskKey = $"{textSanitized}_{speaker}_{isWhisper}";
+        var taskKey = $"{textSanitized}_{speaker}_{effect}";
 
         await _lock.WaitAsync();
         try
@@ -149,7 +163,7 @@ public sealed partial class TTSSystem : EntitySystem
             if (_ttsTasks.TryGetValue(taskKey, out var existingTask))
                 return await existingTask;
 
-            var newTask = _ttsManager.ConvertTextToSpeech(speaker, textSanitized);
+            var newTask = _ttsManager.ConvertTextToSpeech(speaker, textSanitized, effect);
             _ttsTasks[taskKey] = newTask;
         }
         finally
