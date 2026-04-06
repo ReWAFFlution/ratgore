@@ -3,6 +3,7 @@ using Content.Server.Emp;
 using Content.Server.Language;
 using Content.Server.Radio.Components;
 using Content.Server.Speech;
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
@@ -115,7 +116,15 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             {
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
-            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+            {
+                _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+                if (args.Voice is string voice)
+                {
+                    var ev = new TTSRadioPlayEvent(args.MessageSource, voice);
+                    RaiseLocalEvent(Transform(uid).ParentUid, ev);
+                }
+            }
+
 
             //Hullrot: Radio Sound Handling
 

@@ -6,12 +6,12 @@ namespace Content.Shared._Art.TTS;
 
 public sealed class TTSRadioPlayEvent : EntityEventArgs
 {
-    public string Message;
+    public readonly EntityUid MessageSource;
     public string Voice;
 
-    public TTSRadioPlayEvent(string message, string voice)
+    public TTSRadioPlayEvent(EntityUid message, string voice)
     {
-        Message = message;
+        MessageSource = message;
         Voice = voice;
     }
 }

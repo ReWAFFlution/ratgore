@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Language;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
+using Content.Shared._Art.TTS; // Art-TTS
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Language;
@@ -72,6 +73,13 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
+        // Art-TTS Start
+        if (args.Voice is not null)
+        {
+            var ev = new TTSRadioPlayEvent(args.MessageSource, args.Voice);
+            RaiseLocalEvent(uid, ev);
+        }
+        // Art-TTS End
         if (TryComp(uid, out ActorComponent? actor))
         {
             // Einstein-Engines - languages mechanic
@@ -133,6 +141,12 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
+        // adventure tts begin
+        string? voice = null;
+        if (TryComp<TTSComponent>(messageSource, out var tts))
+            voice = tts.VoicePrototype;
+        // adventure tts end
+
         var wrappedMessage = WrapRadioMessage(messageSource, channel, name, content, language, frequency);
         var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null);
 
@@ -141,7 +155,7 @@ public sealed class RadioSystem : EntitySystem
         var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, name, obfuscated, language, frequency);
         var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null);
 
-        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource);
+        var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, voice); // voice Art-TTS
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
